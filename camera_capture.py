@@ -167,6 +167,10 @@ class CameraCapture:
         self.container = None
         self.video_stream = None
         self.frame_count = 0
+        # Mock mode fields
+        self.mock_mode = False
+        self.mock_width = 1280
+        self.mock_height = 720
 
         # Create output directory
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -222,7 +226,19 @@ class CameraCapture:
                             self.container = None
                     continue
             logger.error(f"Failed to open camera {self.camera_id} with format {input_format}: {last_error}")
-            return False
+            # Enable mock mode if camera cannot be opened
+            logger.warning("Falling back to mock mode: generating random frames")
+            self.is_running = True
+            self.mock_mode = True
+            # Try to parse desired video size from options if present
+            try:
+                size = self._get_format_options(input_format).get('video_size', '1280x720')
+                w, h = size.split('x')
+                self.mock_width = int(w)
+                self.mock_height = int(h)
+            except Exception:
+                pass
+            return True
 
         except Exception as e:
             logger.error(f"Error starting camera {self.camera_id}: {e}")
@@ -262,8 +278,20 @@ class CameraCapture:
 
     def capture_frame(self) -> Optional[Image.Image]:
         """Capture a single frame"""
-        if not self.is_running or not self.container:
+        if not self.is_running:
             return None
+
+        # Mock frame generation path
+        if self.mock_mode:
+            try:
+                # Generate random RGB image using os.urandom to avoid numpy dependency
+                num_bytes = self.mock_width * self.mock_height * 3
+                random_bytes = os.urandom(num_bytes)
+                pil_image = Image.frombytes('RGB', (self.mock_width, self.mock_height), random_bytes)
+                return pil_image
+            except Exception as e:
+                logger.error(f"Failed to generate mock frame: {e}")
+                return None
 
         try:
             # Decode frames from the video stream
