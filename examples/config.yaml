@@ -1,0 +1,9 @@
+# Capture configuration
+# cameras: List of integer device IDs
+# output_dir: Directory to save frames
+# fps: Frames per second
+# duration: Optional capture duration in seconds; omit or set null for continuous
+cameras: [0]
+output_dir: ./captured_frames
+fps: 30
+duration: null
