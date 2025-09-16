@@ -4,6 +4,6 @@
 # fps: Frames per second
 # duration: Optional capture duration in seconds; omit or set null for continuous
 cameras: [0]
-output_dir: ./captured_frames
+output_dir: ./frames
 fps: 30
 duration: null

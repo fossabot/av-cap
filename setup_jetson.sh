@@ -87,7 +87,7 @@ fi
 
 # Create necessary directories
 echo "Creating directories..."
-mkdir -p captured_frames
+mkdir -p frames
 mkdir -p test_frames
 mkdir -p logs
 

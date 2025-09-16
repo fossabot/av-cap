@@ -503,7 +503,7 @@ def main():
         except (ValueError, TypeError):
             pass
     
-    effective_output = get_setting(args.output, config_data.get("output_dir"), "./captured_frames")
+    effective_output = get_setting(args.output, config_data.get("output_dir"), "./frames")
     effective_fps = int(get_setting(args.fps, config_data.get("fps"), 30))
     effective_duration = get_setting(args.duration, config_data.get("duration"), None)
 

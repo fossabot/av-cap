@@ -23,7 +23,7 @@ from recorder.utils import load_config, get_setting
 
 config = load_config("./recorder/config.yaml")
 cameras = get_setting(None, config.get("cameras"), [0])
-output_dir = get_setting(None, config.get("output_dir"), "./captured_frames")
+output_dir = get_setting(None, config.get("output_dir"), "./frames")
 fps = int(get_setting(None, config.get("fps"), 30))
 duration = get_setting(None, config.get("duration"), None)
 
@@ -46,7 +46,7 @@ An example YAML config is provided at `examples/config.yaml`:
 # fps: Frames per second
 # duration: Optional capture duration in seconds; omit or set null for continuous
 cameras: [0]
-output_dir: ./captured_frames
+output_dir: ./frames
 fps: 30
 duration: null
 ```
@@ -63,10 +63,10 @@ recorder --config examples/config.yaml
 recorder --cameras 0 1 --fps 25 --output ./captures --duration 60
 
 # Simple single-camera example
-recorder --cameras 0 --output ./captured_frames --fps 15
+recorder --cameras 0 --output ./frames --fps 15
 
 # Windows camera names (use quotes for names with spaces)
-recorder --cameras "Integrated Webcam" --output ./captured_frames --fps 15
+recorder --cameras "Integrated Webcam" --output ./frames --fps 15
 
 # List available cameras
 recorder --list-cameras
