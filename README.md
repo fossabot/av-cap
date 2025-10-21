@@ -1,4 +1,6 @@
 # Multi-Camera Capture System for Jetson
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fahosnyyy%2Fav-cap.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fahosnyyy%2Fav-cap?ref=badge_shield)
+
 
 A robust Python-based system for capturing frames from multiple cameras attached to a Jetson device. This system is optimized for Jetson hardware and supports simultaneous capture from multiple cameras with configurable frame rates and output formats. Uses av (PyAV) for video capture and Pillow for image processing instead of OpenCV for better performance and modern video handling.
 
@@ -83,3 +85,7 @@ recorder --list-cameras
 - Use numeric camera IDs like `0`, `1`, `2`
 - Cameras are typically `/dev/video0`, `/dev/video1`, etc.
 - Jetson devices get optimized backend selection
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fahosnyyy%2Fav-cap.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fahosnyyy%2Fav-cap?ref=badge_large)
